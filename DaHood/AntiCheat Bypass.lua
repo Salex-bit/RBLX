@@ -21,7 +21,7 @@ oldNamecall = hookmetamethod(game, "__namecall", function(...)
         local self, arg1 = ...
 
         if table.find(anticheat_flags, arg1) and self == MainEvent then
-            debug_print("DETECTED FROM '" .. GetFullName(getcallingscript()) .. "': " .. tostring(arg1), 255, 115,115)
+            debug_print("DETECTED " .. tostring(arg1) .. " FROM '" .. GetFullName(getcallingscript()) .. "': " .. tostring(arg1), 255, 115,115)
             return false
         end
     end
