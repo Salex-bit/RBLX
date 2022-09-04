@@ -13,15 +13,15 @@ if not table.find(dahood_id, game.PlaceId) then return end
 
 printconsole(game.Players.LocalPlayer.Name .. " has joined DaHood! Anti-Cheat Running", 255, 255, 0)
 local anticheat_flags = {"TeleportDetect", "CHECKER_1", "CHECKER_2", "OneMoreTime", "BreathingHAMON"} -- Flags that trigger anticheat
-local Tostring = tostring   
+local MainEvent = game.ReplicatedStorage.MainEvent
 
 local oldNamecall = nil
 oldNamecall = hookmetamethod(game, "__namecall", function(...)
     if getnamecallmethod() == "FireServer" then
         local self, arg1 = ...
 
-        if table.find(anticheat_flags, arg1) then
-            debug_print("DETECTED FROM '" .. GetFullName(getcallingscript()) .. "': " .. Tostring(arg1), 255, 115,115)
+        if table.find(anticheat_flags, arg1) and self == MainEvent then
+            debug_print("DETECTED FROM '" .. GetFullName(getcallingscript()) .. "': " .. tostring(arg1), 255, 115,115)
             return false
         end
     end
